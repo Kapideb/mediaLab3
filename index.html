@@ -2,40 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Lab 3 - Option A (Three.js Model) - Kapideb</title>
+    <title>Lab 3 - Option A - Ugnius</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
     <script>
-      // Kuriame savo Three.js komponentą pagal Option A reikalavimus
+    
       AFRAME.registerComponent('complex-threejs-model', {
         init: function () {
-          // 1. Sukuriame Three.js grupę, kuri apjungs visas modelio dalis
+          
           const group = new THREE.Group();
 
-          // 2. Namo pagrindas (Kubo forma)
+          // 2. Namo pagrindas 
           const baseGeo = new THREE.BoxGeometry(1, 1, 1);
-          const baseMat = new THREE.MeshLambertMaterial({ color: 0x8B4513 }); // Ruda spalva
+          const baseMat = new THREE.MeshLambertMaterial({ color: 0x8B4513 }); 
           const base = new THREE.Mesh(baseGeo, baseMat);
-          base.position.set(0, 0.5, 0); // Pakeliame, kad nestovėtų po žeme
+          base.position.set(0, 0.5, 0); 
           group.add(base);
 
-          // 3. Stogas (Kūgio / Piramidės forma)
+          // 3. Stogas 
           const roofGeo = new THREE.ConeGeometry(0.8, 0.8, 4);
-          const roofMat = new THREE.MeshLambertMaterial({ color: 0xDC143C }); // Raudona spalva
+          const roofMat = new THREE.MeshLambertMaterial({ color: 0xDC143C }); 
           const roof = new THREE.Mesh(roofGeo, roofMat);
           roof.position.set(0, 1.4, 0); // Uždėdame ant pagrindo viršaus
-          roof.rotation.y = Math.PI / 4; // Pasukame 45 laipsniais (Three.js naudoja radianus)
+          roof.rotation.y = Math.PI / 4; // Pasukame 45 laipsniais 
           group.add(roof);
 
-          // 4. Durys (Mažesnis kubas)
+          // 4. Durys 
           const doorGeo = new THREE.BoxGeometry(0.3, 0.6, 0.1);
-          const doorMat = new THREE.MeshLambertMaterial({ color: 0xFFFFFF }); // Balta spalva
+          const doorMat = new THREE.MeshLambertMaterial({ color: 0xFFFFFF });
           const door = new THREE.Mesh(doorGeo, doorMat);
           door.position.set(0, 0.3, 0.51); // Išstumiame šiek tiek į priekį
           group.add(door);
 
-          // Priskiriame šią sukurtą Three.js struktūrą prie matomo objekto scenoje
           this.el.setObject3D('mesh', group);
         }
       });
